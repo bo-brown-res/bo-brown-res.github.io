@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Name - Computer Science PhD Student</title>
+    <style>
+        :root {
+            --primary: #546e7a;
+            --secondary: #78909c;
+            --accent: #90a4ae;
+            --text-light: #f5f5f5;
+            --text-dark: #37474f;
+            --background: #f8f9fa;
+            --card-bg: #ffffff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--background);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: var(--primary);
+            color: var(--text-light);
+            padding: 2rem 0;
+            margin-bottom: 2rem;
+        }
+        
+        .container {
+            width: 85%;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .profile {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .profile-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 4px;
+            object-fit: cover;
+        }
+        
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .university {
+            font-style: italic;
+            opacity: 0.9;
+            margin-bottom: 1rem;
+        }
+        
+        .tabs {
+            display: flex;
+            margin-top: 1rem;
+        }
+        
+        .tab-button {
+            background: none;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--text-light);
+            cursor: pointer;
+            transition: background-color 0.3s;
+            position: relative;
+        }
+        
+        .tab-button:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .tab-button.active {
+            border-bottom: 2px solid var(--text-light);
+        }
+        
+        main {
+            min-height: 50vh;
+            background-color: var(--card-bg);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 4px;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.4s;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        h2 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--accent);
+            font-weight: 500;
+        }
+        
+        p {
+            margin-bottom: 1rem;
+        }
+        
+        .research-item, .publication-item {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .research-item:last-child, .publication-item:last-child {
+            border-bottom: none;
+        }
+        
+        .research-item h3, .publication-item h3 {
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .publication-meta {
+            font-style: italic;
+            color: #777;
+            margin-bottom: 0.5rem;
+        }
+        
+        .publication-link {
+            display: inline-block;
+            margin-top: 0.5rem;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .publication-link:hover {
+            color: var(--secondary);
+        }
+        
+        .cv-section {
+            margin-bottom: 1.5rem;
+        }
+        
+        .cv-item {
+            margin-bottom: 1rem;
+        }
+        
+        .cv-title {
+            font-weight: 500;
+            color: var(--secondary);
+        }
+        
+        .cv-date {
+            color: #777;
+        }
+        
+        footer {
+            background-color: var(--primary);
+            color: var(--text-light);
+            text-align: center;
+            padding: 1.5rem 0;
+            margin-top: 2rem;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+        
+        .social-links a:hover {
+            opacity: 0.8;
+        }
+        
+        @media (max-width: 768px) {
+            .profile {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .tabs {
+                flex-wrap: wrap;
+            }
+            
+            .tab-button {
+                flex-grow: 1;
+                text-align: center;
+                padding: 0.75rem 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="profile">
+                <img src="/api/placeholder/120/120" alt="Profile Photo" class="profile-img">
+                <div>
+                    <h1>Your Name</h1>
+                    <div class="university">PhD Candidate in Computer Science, University Name</div>
+                </div>
+            </div>
+            <div class="tabs">
+                <button class="tab-button active" onclick="openTab('about')">About Me</button>
+                <button class="tab-button" onclick="openTab('research')">Research</button>
+                <button class="tab-button" onclick="openTab('publications')">Publications</button>
+                <button class="tab-button" onclick="openTab('cv')">CV</button>
+            </div>
+        </div>
+    </header>
+    
+    <div class="container">
+        <main>
+            <div id="about" class="tab-content active">
+                <h2>About Me</h2>
+                <p>Welcome to my academic webpage. I am a PhD candidate in Computer Science at [University Name], where I focus on [your research focus].</p>
+                
+                <p>My research interests include [list key interests]. I am particularly interested in exploring [specific niche or problem you're addressing in your research].</p>
+                
+                <p>Prior to joining the PhD program, I completed my [previous degrees] at [previous institutions].</p>
+                
+                <p>Feel free to explore my research projects and publications. If you're interested in collaboration, please reach out via email.</p>
+            </div>
+            
+            <div id="research" class="tab-content">
+                <h2>Research</h2>
+                
+                <div class="research-item">
+                    <h3>Research Project Title 1</h3>
+                    <p>Description of your first research project. Explain the problem you're addressing, the methodologies you're using, and the potential impact of your work.</p>
+                </div>
+                
+                <div class="research-item">
+                    <h3>Research Project Title 2</h3>
+                    <p>Description of your second research project. Outline the objectives, challenges, and your approach to solving them.</p>
+                </div>
+                
+                <div class="research-item">
+                    <h3>Research Project Title 3</h3>
+                    <p>Overview of your third research project. Highlight the innovative aspects of your work and the technologies or theories you're employing.</p>
+                </div>
+            </div>
+            
+            <div id="publications" class="tab-content">
+                <h2>Publications</h2>
+                
+                <div class="publication-item">
+                    <h3>Publication Title 1</h3>
+                    <div class="publication-meta">Authors: Your Name, Co-author Name, Another Co-author</div>
+                    <div class="publication-meta">Conference/Journal: Conference/Journal Name, Year</div>
+                    <p>Brief abstract or summary of the publication.</p>
+                    <a href="#" class="publication-link">View Paper →</a>
+                </div>
+                
+                <div class="publication-item">
+                    <h3>Publication Title 2</h3>
+                    <div class="publication-meta">Authors: Your Name, Co-author Name</div>
+                    <div class="publication-meta">Conference/Journal: Conference/Journal Name, Year</div>
+                    <p>Summary of this publication's content, methodology, and results.</p>
+                    <a href="#" class="publication-link">View Paper →</a>
+                </div>
+                
+                <div class="publication-item">
+                    <h3>Publication Title 3</h3>
+                    <div class="publication-meta">Authors: Co-author Name, Your Name, Another Co-author</div>
+                    <div class="publication-meta">Conference/Journal: Conference/Journal Name, Year</div>
+                    <p>Overview of the publication, including its purpose, approach, and outcomes.</p>
+                    <a href="#" class="publication-link">View Paper →</a>
+                </div>
+            </div>
+            
+            <div id="cv" class="tab-content">
+                <h2>Curriculum Vitae</h2>
+                
+                <div class="cv-section">
+                    <h3>Education</h3>
+                    
+                    <div class="cv-item">
+                        <div class="cv-title">Ph.D. in Computer Science</div>
+                        <div class="cv-date">Expected 20XX</div>
+                        <div>University Name</div>
+                        <div>Advisor: Professor Name</div>
+                    </div>
+                    
+                    <div class="cv-item">
+                        <div class="cv-title">M.S. in Computer Science</div>
+                        <div class="cv-date">20XX</div>
+                        <div>University Name</div>
+                    </div>
+                    
+                    <div class="cv-item">
+                        <div class="cv-title">B.S. in Computer Science</div>
+                        <div class="cv-date">20XX</div>
+                        <div>University Name</div>
+                    </div>
+                </div>
+                
+                <div class="cv-section">
+                    <h3>Research Experience</h3>
+                    
+                    <div class="cv-item">
+                        <div class="cv-title">Research Assistant</div>
+                        <div class="cv-date">20XX - Present</div>
+                        <div>Lab/Group Name, University Name</div>
+                    </div>
+                    
+                    <div class="cv-item">
+                        <div class="cv-title">Research Intern</div>
+                        <div class="cv-date">Summer 20XX</div>
+                        <div>Company/Lab Name</div>
+                    </div>
+                </div>
+                
+                <div class="cv-section">
+                    <h3>Skills</h3>
+                    
+                    <div class="cv-item">
+                        <div>Programming Languages: Python, Java, C++, JavaScript</div>
+                        <div>Frameworks & Tools: TensorFlow, PyTorch, React</div>
+                        <div>Other Skills: Machine Learning, Algorithm Design, Data Analysis</div>
+                    </div>
+                </div>
+                
+                <div class="cv-section">
+                    <h3>Awards & Honors</h3>
+                    
+                    <div class="cv-item">
+                        <div class="cv-title">Award Name</div>
+                        <div class="cv-date">20XX</div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <p>© 2025 Your Name</p>
+            <div class="social-links">
+                <a href="mailto:your.email@university.edu">Email</a>
+                <a href="#">GitHub</a>
+                <a href="#">LinkedIn</a>
+                <a href="#">Scholar</a>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        function openTab(tabName) {
+            // Hide all tab content
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Remove active class from all buttons
+            const tabButtons = document.querySelectorAll('.tab-button');
+            tabButtons.forEach(button => {
+                button.classList.remove('active');
+            });
+            
+            // Show the selected tab content
+            document.getElementById(tabName).classList.add('active');
+            
+            // Add active class to the clicked button
+            event.currentTarget.classList.add('active');
+        }
+    </script>
+</body>
+</html>
