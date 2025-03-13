@@ -3,399 +3,267 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Name - Computer Science PhD Student</title>
+    <title>PhD Profile</title>
     <style>
+        /* Color palette */
         :root {
-            --primary: #546e7a;
-            --secondary: #78909c;
-            --accent: #90a4ae;
-            --text-light: #f5f5f5;
-            --text-dark: #37474f;
-            --background: #f8f9fa;
-            --card-bg: #ffffff;
+            --cream: #f8f5f0;
+            --light-gray: #e6e6e6;
+            --mid-gray: #b0b0b0;
+            --text-color: #4a4a4a;
         }
-        
-        * {
+
+        /* Base styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--cream);
+            color: var(--text-color);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
-        
-        body {
-            background-color: var(--background);
-            color: var(--text-dark);
-            line-height: 1.6;
-        }
-        
-        header {
-            background-color: var(--primary);
-            color: var(--text-light);
-            padding: 2rem 0;
-            margin-bottom: 2rem;
-        }
-        
+
         .container {
-            width: 85%;
             max-width: 1000px;
             margin: 0 auto;
+            padding: 20px;
+            flex: 1;
         }
-        
-        .profile {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-            margin-bottom: 1rem;
+
+        /* Header */
+        header {
+            text-align: center;
+            padding: 40px 0;
         }
-        
-        .profile-img {
-            width: 120px;
-            height: 120px;
-            border-radius: 4px;
-            object-fit: cover;
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: var(--text-color);
         }
-        
-        h1 {
-            font-size: 2.2rem;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
+
+        header p {
+            font-size: 1.2rem;
+            margin-top: 0;
+            color: var(--text-color);
         }
-        
-        .university {
-            font-style: italic;
-            opacity: 0.9;
-            margin-bottom: 1rem;
-        }
-        
+
+        /* Tabs */
         .tabs {
             display: flex;
-            margin-top: 1rem;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--mid-gray);
         }
-        
+
         .tab-button {
-            background: none;
+            background-color: var(--light-gray);
             border: none;
-            padding: 0.75rem 1.5rem;
-            font-size: 1rem;
-            font-weight: 500;
-            color: var(--text-light);
+            padding: 12px 24px;
+            margin-right: 5px;
             cursor: pointer;
+            font-size: 1rem;
+            border-radius: 5px 5px 0 0;
             transition: background-color 0.3s;
-            position: relative;
         }
-        
+
         .tab-button:hover {
-            background-color: rgba(255, 255, 255, 0.1);
+            background-color: #d9d9d9;
         }
-        
+
         .tab-button.active {
-            border-bottom: 2px solid var(--text-light);
+            background-color: var(--cream);
+            border: 1px solid var(--mid-gray);
+            border-bottom: 1px solid var(--cream);
+            margin-bottom: -1px;
         }
-        
-        main {
-            min-height: 50vh;
-            background-color: var(--card-bg);
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-            padding: 2rem;
-            margin-bottom: 2rem;
-            border-radius: 4px;
-        }
-        
+
+        /* Tab content */
         .tab-content {
             display: none;
+            padding: 20px;
+            background-color: var(--cream);
+            border-radius: 0 0 5px 5px;
         }
-        
+
         .tab-content.active {
             display: block;
-            animation: fadeIn 0.4s;
         }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
-        h2 {
-            color: var(--primary);
-            margin-bottom: 1.5rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 1px solid var(--accent);
-            font-weight: 500;
-        }
-        
-        p {
-            margin-bottom: 1rem;
-        }
-        
-        .research-item, .publication-item {
-            margin-bottom: 1.5rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .research-item:last-child, .publication-item:last-child {
-            border-bottom: none;
-        }
-        
-        .research-item h3, .publication-item h3 {
-            color: var(--secondary);
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-        }
-        
-        .publication-meta {
-            font-style: italic;
-            color: #777;
-            margin-bottom: 0.5rem;
-        }
-        
-        .publication-link {
-            display: inline-block;
-            margin-top: 0.5rem;
-            color: var(--primary);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-        
-        .publication-link:hover {
-            color: var(--secondary);
-        }
-        
-        .cv-section {
-            margin-bottom: 1.5rem;
-        }
-        
-        .cv-item {
-            margin-bottom: 1rem;
-        }
-        
-        .cv-title {
-            font-weight: 500;
-            color: var(--secondary);
-        }
-        
-        .cv-date {
-            color: #777;
-        }
-        
+
+        /* Footer */
         footer {
-            background-color: var(--primary);
-            color: var(--text-light);
+            background-color: var(--light-gray);
             text-align: center;
-            padding: 1.5rem 0;
-            margin-top: 2rem;
+            padding: 15px;
+            width: 100%;
+            position: sticky;
+            bottom: 0;
         }
-        
-        .social-links {
+
+        /* About Me section */
+        .profile-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .profile-photo {
+            width: 150px;
+            height: 150px;
+            background-color: var(--light-gray);
+            border-radius: 50%;
             display: flex;
             justify-content: center;
-            gap: 1rem;
-            margin-top: 1rem;
+            clip-path:circle();
         }
-        
-        .social-links a {
-            color: var(--text-light);
-            text-decoration: none;
-            transition: opacity 0.3s;
+
+        .profile-bio {
+            flex: 1;
+            min-width: 300px;
         }
-        
-        .social-links a:hover {
-            opacity: 0.8;
+
+        .section {
+            margin-bottom: 30px;
         }
-        
+
+        /* Publications section */
+        .publication {
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .publication:last-child {
+            border-bottom: none;
+        }
+
+        .publication h3 {
+            margin-bottom: 5px;
+        }
+
+        .publication-meta {
+            font-style: italic;
+            color: var(--text-color);
+            margin-bottom: 10px;
+        }
+
+        .publication-abstract {
+            margin-top: 10px;
+        }
+
+        /* Responsive design */
         @media (max-width: 768px) {
-            .profile {
+            .profile-info {
                 flex-direction: column;
-                text-align: center;
+                align-items: center;
             }
             
-            .tabs {
-                flex-wrap: wrap;
-            }
-            
-            .tab-button {
-                flex-grow: 1;
+            .profile-bio {
                 text-align: center;
-                padding: 0.75rem 0.5rem;
             }
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <div class="profile">
-                <img src="/api/placeholder/120/120" alt="Profile Photo" class="profile-img">
-                <div>
-                    <h1>Your Name</h1>
-                    <div class="university">PhD Candidate in Computer Science, University Name</div>
-                </div>
-            </div>
-            <div class="tabs">
-                <button class="tab-button active" onclick="openTab('about')">About Me</button>
-                <button class="tab-button" onclick="openTab('research')">Research</button>
-                <button class="tab-button" onclick="openTab('publications')">Publications</button>
-                <button class="tab-button" onclick="openTab('cv')">CV</button>
-            </div>
-        </div>
-    </header>
-    
     <div class="container">
-        <main>
-            <div id="about" class="tab-content active">
-                <h2>About Me</h2>
-                <p>Welcome to my academic webpage. I am a PhD candidate in Computer Science at [University Name], where I focus on [your research focus].</p>
-                
-                <p>My research interests include [list key interests]. I am particularly interested in exploring [specific niche or problem you're addressing in your research].</p>
-                
-                <p>Prior to joining the PhD program, I completed my [previous degrees] at [previous institutions].</p>
-                
-                <p>Feel free to explore my research projects and publications. If you're interested in collaboration, please reach out via email.</p>
-            </div>
-            
-            <div id="research" class="tab-content">
-                <h2>Research</h2>
-                
-                <div class="research-item">
-                    <h3>Research Project Title 1</h3>
-                    <p>Description of your first research project. Explain the problem you're addressing, the methodologies you're using, and the potential impact of your work.</p>
-                </div>
-                
-                <div class="research-item">
-                    <h3>Research Project Title 2</h3>
-                    <p>Description of your second research project. Outline the objectives, challenges, and your approach to solving them.</p>
-                </div>
-                
-                <div class="research-item">
-                    <h3>Research Project Title 3</h3>
-                    <p>Overview of your third research project. Highlight the innovative aspects of your work and the technologies or theories you're employing.</p>
-                </div>
-            </div>
-            
-            <div id="publications" class="tab-content">
-                <h2>Publications</h2>
-                
-                <div class="publication-item">
-                    <h3>Publication Title 1</h3>
-                    <div class="publication-meta">Authors: Your Name, Co-author Name, Another Co-author</div>
-                    <div class="publication-meta">Conference/Journal: Conference/Journal Name, Year</div>
-                    <p>Brief abstract or summary of the publication.</p>
-                    <a href="#" class="publication-link">View Paper →</a>
-                </div>
-                
-                <div class="publication-item">
-                    <h3>Publication Title 2</h3>
-                    <div class="publication-meta">Authors: Your Name, Co-author Name</div>
-                    <div class="publication-meta">Conference/Journal: Conference/Journal Name, Year</div>
-                    <p>Summary of this publication's content, methodology, and results.</p>
-                    <a href="#" class="publication-link">View Paper →</a>
-                </div>
-                
-                <div class="publication-item">
-                    <h3>Publication Title 3</h3>
-                    <div class="publication-meta">Authors: Co-author Name, Your Name, Another Co-author</div>
-                    <div class="publication-meta">Conference/Journal: Conference/Journal Name, Year</div>
-                    <p>Overview of the publication, including its purpose, approach, and outcomes.</p>
-                    <a href="#" class="publication-link">View Paper →</a>
-                </div>
-            </div>
-            
-            <div id="cv" class="tab-content">
-                <h2>Curriculum Vitae</h2>
-                
-                <div class="cv-section">
-                    <h3>Education</h3>
-                    
-                    <div class="cv-item">
-                        <div class="cv-title">Ph.D. in Computer Science</div>
-                        <div class="cv-date">Expected 20XX</div>
-                        <div>University Name</div>
-                        <div>Advisor: Professor Name</div>
-                    </div>
-                    
-                    <div class="cv-item">
-                        <div class="cv-title">M.S. in Computer Science</div>
-                        <div class="cv-date">20XX</div>
-                        <div>University Name</div>
-                    </div>
-                    
-                    <div class="cv-item">
-                        <div class="cv-title">B.S. in Computer Science</div>
-                        <div class="cv-date">20XX</div>
-                        <div>University Name</div>
-                    </div>
-                </div>
-                
-                <div class="cv-section">
-                    <h3>Research Experience</h3>
-                    
-                    <div class="cv-item">
-                        <div class="cv-title">Research Assistant</div>
-                        <div class="cv-date">20XX - Present</div>
-                        <div>Lab/Group Name, University Name</div>
-                    </div>
-                    
-                    <div class="cv-item">
-                        <div class="cv-title">Research Intern</div>
-                        <div class="cv-date">Summer 20XX</div>
-                        <div>Company/Lab Name</div>
-                    </div>
-                </div>
-                
-                <div class="cv-section">
-                    <h3>Skills</h3>
-                    
-                    <div class="cv-item">
-                        <div>Programming Languages: Python, Java, C++, JavaScript</div>
-                        <div>Frameworks & Tools: TensorFlow, PyTorch, React</div>
-                        <div>Other Skills: Machine Learning, Algorithm Design, Data Analysis</div>
-                    </div>
-                </div>
-                
-                <div class="cv-section">
-                    <h3>Awards & Honors</h3>
-                    
-                    <div class="cv-item">
-                        <div class="cv-title">Award Name</div>
-                        <div class="cv-date">20XX</div>
-                    </div>
-                </div>
-            </div>
-        </main>
-    </div>
-    
-    <footer>
-        <div class="container">
-            <p>© 2025 Your Name</p>
-            <div class="social-links">
-                <a href="mailto:your.email@university.edu">Email</a>
-                <a href="#">GitHub</a>
-                <a href="#">LinkedIn</a>
-                <a href="#">Scholar</a>
-            </div>
+        <header>
+            <h1>Bowman Brown</h1>
+            <p>Ph.D. Candidate in Computer Science at the University of Wisconsin-Madison</p>
+        </header>
+
+        <div class="tabs">
+            <button class="tab-button active" onclick="openTab('about')">About Me</button>
+            <button class="tab-button" onclick="openTab('publications')">Publications</button>
         </div>
+
+        <div id="about" class="tab-content active">
+            <div class="profile-info">
+                <div class="profile-photo">
+                    <img src="https://media.licdn.com/dms/image/v2/C5603AQHpAarXrszTsA/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1558054020808?e=1747267200&v=beta&t=CqbrGclCXcpE3R5rr8zpu9rq-LrxBmfUr0LPqJX5JTk">
+                    
+                </div>
+                <div class="profile-bio">
+                    <h2>About Me</h2>
+                    <p>I'm a current Ph.D. candidate in Computer Science at the University of Wisconsin-Madison advised by Professor Mark Craven.</p>
+                    <p>Before joining UW-Madison, I worked as a software engineer. I received my M.S. in Computer Science at the University of Southern California.</p>
+                        
+                    <h2>Research Interests</h2>
+                    <p>My research interests center on applications of machine learning to healthcare, with an emphasis on interpretable machine learning and time series analysis.</p>
+                                    
+                </div>
+            </div>
+
+            <!-- <div class="section">
+                <h2>Research Interests</h2>
+                <ul>
+                    <li>Natural Language Processing</li>
+                    <li>Machine Learning</li>
+                    <li>Computational Linguistics</li>
+                    <li>Human-Computer Interaction</li>
+                </ul>
+            </div> -->
+
+            <!-- <div class="section">
+                <h2>Education</h2>
+                <p><strong>Ph.D. in Computer Science</strong> - University of Research, 2023</p>
+                <p><strong>M.S. in Artificial Intelligence</strong> - Tech Institute, 2019</p>
+                <p><strong>B.S. in Computer Science</strong> - State University, 2017</p>
+            </div> -->
+
+        </div>
+
+        <div id="publications" class="tab-content">
+            <h2>Publications</h2>
+
+            <div class="publication">
+                <h3>Trustworthy model evaluation on a budget</h3>
+                <div class="publication-meta">Iordanis Fostiropoulos, Bowman Noah Brown, Laurent Itti</div>
+                <div class="publication-meta">Trustworthy and Reliable Large-Scale Machine Learning Models, ICLR, 2023</div>
+                <!-- <div class="publication-abstract">
+                    <strong>Abstract:</strong> TODO
+                </div> -->
+                <a href="https://openreview.net/pdf?id=_JXT98mOmR" class="publication-link">View Paper →</a>
+            </div>
+            
+            <div class="publication">
+                <h3>Reproducibility Requires Consolidated Artifacts</h3>
+                <div class="publication-meta">Iordanis Fostiropoulos, Bowman Noah Brown, Laurent Itti</div>
+                <div class="publication-meta">IEEE/ACM 2nd International Conference on AI Engineering - Software Engineering for AI (CAIN), 2023</div>
+                <!-- <div class="publication-abstract">
+                    <strong>Abstract:</strong> TODO
+                </div> -->
+                <a href="https://arxiv.org/abs/2305.12571" class="publication-link">View Paper →</a>
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        <a style="padding:10px;" href="mailto:bnbrown3@wisc.edu">Email</a>
+        <a style="padding:10px;" href="https://github.com/bo-brown-res">GitHub</a>
+        <a style="padding:10px;" href="https://www.linkedin.com/in/bowman-brown-65bbb9122/">LinkedIn</a>
+        <p>Last Updated: March 2025</p>
     </footer>
-    
+
     <script>
         function openTab(tabName) {
             // Hide all tab content
-            const tabContents = document.querySelectorAll('.tab-content');
-            tabContents.forEach(content => {
-                content.classList.remove('active');
-            });
-            
-            // Remove active class from all buttons
-            const tabButtons = document.querySelectorAll('.tab-button');
-            tabButtons.forEach(button => {
-                button.classList.remove('active');
-            });
-            
-            // Show the selected tab content
-            document.getElementById(tabName).classList.add('active');
-            
-            // Add active class to the clicked button
-            event.currentTarget.classList.add('active');
+            const tabContents = document.getElementsByClassName("tab-content");
+            for (let i = 0; i < tabContents.length; i++) {
+                tabContents[i].classList.remove("active");
+            }
+
+            // Deactivate all tab buttons
+            const tabButtons = document.getElementsByClassName("tab-button");
+            for (let i = 0; i < tabButtons.length; i++) {
+                tabButtons[i].classList.remove("active");
+            }
+
+            // Show the selected tab content and activate the button
+            document.getElementById(tabName).classList.add("active");
+            document.querySelector(`button[onclick="openTab('${tabName}')"]`).classList.add("active");
         }
     </script>
 </body>
